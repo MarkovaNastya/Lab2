@@ -12,33 +12,37 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
     protected void reduce(KeyValue key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
 
         Iterator<Text> iter = values.iterator();
-        
+
 //        Text systemInfo = new Text(iter.next());
 
         String airportName = iter.next().toString();
 
-        float max = Float.parseFloat(iter.next().toString());
-        float min = max;
-        float average = max;
-        int count = 1;
+        if (iter.hasNext()){
+            float max = Float.parseFloat(iter.next().toString());
+            float min = max;
+            float average = max;
+            int count = 1;
 
 
-        while (iter.hasNext()) {
+            while (iter.hasNext()) {
 
-            float delay = Float.parseFloat(iter.next().toString());
+                float delay = Float.parseFloat(iter.next().toString());
 
-            if (delay > max) {
-                max = delay;
+                if (delay > max) {
+                    max = delay;
+                }
+
+                if (delay < min) {
+                    min = delay;
+                }
+
+                average += delay;
+                count++;
             }
+            average /= count;
+            
 
-            if (delay < min) {
-                min = delay;
-            }
 
-            average += delay;
-            count++;
         }
-        average /= count;
-
     }
 }
