@@ -1,5 +1,6 @@
 package Lab2;
 
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
@@ -43,8 +44,10 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
             average /= count;
 
             Text outText = new Text(airportName + ";   Average delay time: " + average + ";   Maximum delay time: "+ max+";   Minimum delay time: "+min);
-            context.write(new Text(key.getKey()), outText);
 
+            Text outKey = new Text (String.valueOf(key.getKey()));
+
+            context.write(outKey, outText);
 
         }
     }
