@@ -27,7 +27,8 @@ public class ReaderCSV {
 
         for (int i = 0; i < line.length(); i++){
             if (line.charAt(i)!=COMMA){
-                currentColumn.concat(String.valueOf(line.charAt(i)));
+                String symbol=String.valueOf(line.charAt(i));
+                currentColumn+=symbol;
             }
         }
 
