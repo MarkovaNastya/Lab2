@@ -26,9 +26,12 @@ public class MapperDelays extends Mapper<LongWritable, Text, KeyValue, Text> {
                     AIRPORT_FLAG
             );
 
-            Text delay = new Text();
+            String delay = readerCSV.getColumn(DELAY);
 
-            context.write(keyValue, new Text(readerCSV.getColumn(DELAY)));
+            if (delay.length() > 0) {
+                context.write(keyValue, new Text(delay));
+            }
+
         }
 
     }
