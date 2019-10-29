@@ -42,7 +42,8 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
             average /= count;
 
-            Text outText = new Text(airportName + "; Minimum dela")
+            Text outText = new Text(airportName + ";   Average delay time: " + average + ";   Maximum delay time: "+ max+";   Minimum delay time: "+min);
+            context.write(new Text(key.getKey()), outText);
 
 
         }
