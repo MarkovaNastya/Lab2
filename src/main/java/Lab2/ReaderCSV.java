@@ -1,6 +1,7 @@
 package Lab2;
 
 import org.apache.hadoop.io.Text;
+import org.codehaus.jackson.JsonToken;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -42,9 +43,10 @@ public class ReaderCSV {
 
             }
         }
-        columns.add(currentColumn);
-
-        System.out.println(currentColumn);
+       if (currentColumn.length()>0){
+           columns.add(currentColumn);
+       }
+        System.out.println(1);
     }
 
 
