@@ -39,8 +39,10 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
                 average += delay;
                 count++;
             }
+
             average /= count;
-            
+
+            Text outText = new Text(airportName + "; Minimum dela")
 
 
         }
