@@ -10,11 +10,12 @@ public class MapperAirports extends Mapper<LongWritable, Text, KeyValue, Text> {
     private static final int AIRPORT_ID = 0;
     private static final int AIRPORT_NAME = 1;
     private static final String AIRPORT_FLAG = "0";
+    private static final String TITLE="Code,Description";
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 
-        if (!value.toString().equals("Code,Description")) {
+        if (!value.toString().equals(TITLE)) {
             ReaderCSV readerCSV = new ReaderCSV();
 
             readerCSV.parsLine(value);
