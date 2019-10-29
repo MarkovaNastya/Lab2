@@ -27,9 +27,22 @@ public class ReaderCSV {
 
         for (int i = 0; i < line.length(); i++){
             if (line.charAt(i)!=COMMA){
-                currentColumn+=String.valueOf(line.charAt(i));
+                if (line.charAt(i)!=QUOTES){
+                    currentColumn+=String.valueOf(line.charAt(i));
+                } else {
+                    countQuotes++;
+                }
+            } else {
+                if (countQuotes%2==1){
+                    currentColumn+=String.valueOf(line.charAt(i));
+                } else {
+                    columns.add(currentColumn);
+                    currentColumn="";
+                }
+
             }
         }
+        columns.add(currentColumn);
 
         System.out.println(currentColumn);
     }
