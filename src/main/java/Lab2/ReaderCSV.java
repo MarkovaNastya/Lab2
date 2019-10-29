@@ -18,9 +18,17 @@ public class ReaderCSV {
     }
 
     public void parsLine(Text t){
+
         String line = t.toString();
+
+        int countComma = 0;
+
+        String currentColumn="";
+
         for (int i = 0; i < line.length(); i++){
-            if
+            if (line.charAt(i)!=COMMA){
+                currentColumn.concat(line.charAt(i));
+            }
         }
     }
 
