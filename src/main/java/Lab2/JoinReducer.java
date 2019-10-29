@@ -18,7 +18,7 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
         String airportName = iter.next().toString();
 
-        if (iter.hasNext()){
+        if (iter.hasNext()) {
             float max = Float.parseFloat(iter.next().toString());
             float min = max;
             float average = max;
