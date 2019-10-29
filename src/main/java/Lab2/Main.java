@@ -3,8 +3,6 @@ package Lab2;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
@@ -23,7 +21,7 @@ public class Main {
 //        job.setPartitionerClass(TextPair.FirstPartitioner.class);
 //        job.setGroupingComparatorClass(TextPair.FirstComparator.class);
 //        job.setReducerClass(JoinReducer.class);
-        job.setMapOutputKeyClass(TextPair.class);
+        job.setMapOutputKeyClass(KeyValue.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 

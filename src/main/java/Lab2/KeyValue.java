@@ -7,26 +7,26 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Objects;
 
-public class TextPair implements WritableComparable<TextPair> {
+public class KeyValue implements WritableComparable<KeyValue> {
     private int key;
     private String value;
 
-    public TextPair() {
+    public KeyValue() {
         this.key = 0;
         this.value = "";
     }
 
-    public TextPair(int key, String value) {
+    public KeyValue(int key, String value) {
         this.key = key;
         this.value = value;
     }
 
-    public int compareKeys(TextPair tp){
+    public int compareKeys(KeyValue tp){
         return Integer.compare(this.key, tp.key);
     }
 
     @Override
-    public int compareTo(TextPair tp) {
+    public int compareTo(KeyValue tp) {
         if (this.key == tp.key ){
             if (this.value.equals(tp.value)){
                 return 0;
@@ -50,8 +50,8 @@ public class TextPair implements WritableComparable<TextPair> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TextPair)) return false;
-        TextPair textPair = (TextPair) o;
+        if (!(o instanceof KeyValue)) return false;
+        KeyValue textPair = (KeyValue) o;
         return key == textPair.key &&
                 Objects.equals(value, textPair.value);
     }
