@@ -9,14 +9,14 @@ import java.util.Objects;
 
 public class KeyValue implements WritableComparable<KeyValue> {
     private int key;
-    private String value;
+    private int value;
 
     public KeyValue() {
         this.key = 0;
-        this.value = "";
+        this.value = 0;
     }
 
-    public KeyValue(int key, String value) {
+    public KeyValue(int key, int value) {
         this.key = key;
         this.value = value;
     }
@@ -28,7 +28,7 @@ public class KeyValue implements WritableComparable<KeyValue> {
     @Override
     public int compareTo(KeyValue tp) {
         if (this.key == tp.key ){
-            if (this.value.equals(tp.value)){
+            if (this.value == tp.value){
                 return 0;
             }
         }
@@ -38,13 +38,13 @@ public class KeyValue implements WritableComparable<KeyValue> {
     @Override
     public void write(DataOutput dataOutput) throws IOException {
         dataOutput.writeInt(this.key);
-        dataOutput.writeChars(this.value);
+        dataOutput.writeInt(this.value);
     }
 
     @Override
     public void readFields(DataInput dataInput) throws IOException {
         this.key=dataInput.readInt();
-        this.value = dataInput.readLine();
+        this.value = dataInput.readInt();
     }
 
     @Override
@@ -69,11 +69,11 @@ public class KeyValue implements WritableComparable<KeyValue> {
         this.key = key;
     }
 
-    public String getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(int value) {
         this.value = value;
     }
 }
