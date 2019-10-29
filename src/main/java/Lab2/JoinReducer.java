@@ -46,8 +46,9 @@ public class JoinReducer extends Reducer<KeyValue, Text, IntWritable, Text> {
 
 //            Text outKey = new Text (String.valueOf(key.getKey()));
 
-            context.write(new IntWritable(key.getKey()), outText);
+//            context.write(outKey, outText);
 
+            context.write(new IntWritable(key.getKey()), outText);
         }
     }
 }
