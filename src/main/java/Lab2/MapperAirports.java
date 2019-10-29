@@ -7,23 +7,25 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 public class MapperAirports extends Mapper<LongWritable, Text, KeyValue, Text> {
-    private static final int AIRPORT_ID=0;
-    private static final int AIRPORT_NAME=1;
-    private static final String 
+    private static final int AIRPORT_ID = 0;
+    private static final int AIRPORT_NAME = 1;
+    private static final String AIRPORT_FLAG = "0";
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
 
-        ReaderCSV readerCSV = new ReaderCSV();
+        if (!value.toString().equals("Code,Description")) {
+            ReaderCSV readerCSV = new ReaderCSV();
 
-        readerCSV.parsLine(value);
+            readerCSV.parsLine(value);
 
-        KeyValue keyValue = new KeyValue(
-                readerCSV.getColumn(0),
-                "0"
-        );
+            KeyValue keyValue = new KeyValue(
+                    Integer.parseInt(readerCSV.getColumn(AIRPORT_ID)),
+                    AIRPORT_FLAG
+            );
 
-
+            context.write(keyValue, new Text(readerCSV.getColumn(AIRPORT_NAME)));
+        }
 
     }
 }
