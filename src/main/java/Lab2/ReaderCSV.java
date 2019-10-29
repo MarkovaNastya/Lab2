@@ -17,19 +17,21 @@ public class ReaderCSV {
         columns=new ArrayList<>();
     }
 
-    public void parsLine(Text t){
+    public void parsLine(String line){
 
-        String line = t.toString();
+ //       String line = t.toString();
 
-        int countComma = 0;
+        int countQuotes = 0;
 
         String currentColumn="";
 
         for (int i = 0; i < line.length(); i++){
             if (line.charAt(i)!=COMMA){
-                currentColumn.concat(line.charAt(i));
+                currentColumn.concat(String.valueOf(line.charAt(i)));
             }
         }
+
+        System.out.println(currentColumn);
     }
 
 
