@@ -7,6 +7,19 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 public class TextPair implements WritableComparable<TextPair> {
+    private int key;
+    private String value;
+
+    public TextPair() {
+        this.key = 0;
+        this.value = "";
+    }
+
+
+    public TextPair(int key, String value) {
+        this.key = key;
+        this.value = value;
+    }
 
 
     @Override
