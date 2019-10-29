@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class JoinReducer extends Reducer<KeyValue, Text, IntWritable, Text> {
+public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
     @Override
     protected void reduce(KeyValue key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -44,11 +44,10 @@ public class JoinReducer extends Reducer<KeyValue, Text, IntWritable, Text> {
 
             Text outText = new Text(airportName + ";   Average delay time: " + average + ";   Maximum delay time: "+ max+";   Minimum delay time: "+min);
 
-//            Text outKey = new Text (String.valueOf(key.getKey()));
+            Text outKey = new Text (String.valueOf(key.getKey()));
 
-//            context.write(outKey, outText);
+            context.write(outKey, outText);
 
-            context.write(new IntWritable(key.getKey()), outText);
         }
     }
 }

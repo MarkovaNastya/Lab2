@@ -9,7 +9,7 @@ import java.io.IOException;
 public class MapperAirports extends Mapper<LongWritable, Text, KeyValue, Text> {
     private static final int AIRPORT_ID = 0;
     private static final int AIRPORT_NAME = 1;
-    private static final int AIRPORT_FLAG = 0;
+    private static final String AIRPORT_FLAG = "0";
     private static final String TITLE = "Code,Description";
 
     @Override
