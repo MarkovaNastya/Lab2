@@ -20,6 +20,7 @@ public class Main {
         MultipleInputs.addInputPath(job, new Path(args[1]), TextInputFormat.class, MapperDelays.class);
 
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
+
         job.setPartitionerClass(FirstPartitioner.class);
         job.setGroupingComparatorClass(FirstComparator.class);
         job.setReducerClass(JoinReducer.class);

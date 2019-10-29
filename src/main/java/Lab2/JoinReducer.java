@@ -14,11 +14,10 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
         Iterator<Text> iter = values.iterator();
 
-//        Text systemInfo = new Text(iter.next());
 
         String airportName = iter.next().toString();
 
-        if (iter.hasNext()) {
+        if (iter.hasNext()){
             float max = Float.parseFloat(iter.next().toString());
             float min = max;
             float average = max;
