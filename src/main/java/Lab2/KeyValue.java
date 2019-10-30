@@ -21,18 +21,17 @@ public class KeyValue implements WritableComparable<KeyValue> {
         this.value = value;
     }
 
-    public int compareKeys(KeyValue tp){
-        return Integer.compare(this.key, tp.key);
+    public int compareKeys(KeyValue kv){
+        return Integer.compare(this.key, kv.key);
     }
 
     @Override
-    public int compareTo(KeyValue tp) {
-        if (this.key == tp.key ){
-            if (this.value.equals(tp.value)){
-                return 0;
-            }
+    public int compareTo(KeyValue kv) {
+        if (Integer.compare(this.key, kv.key) != 0) {
+            return Integer.compare(this.key, kv.key);
+        } else {
+            return Integer.compare(this.value, kv.value);
         }
-        return 1;
     }
 
     @Override
@@ -51,9 +50,9 @@ public class KeyValue implements WritableComparable<KeyValue> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof KeyValue)) return false;
-        KeyValue textPair = (KeyValue) o;
-        return key == textPair.key &&
-                Objects.equals(value, textPair.value);
+        KeyValue keyValue = (KeyValue) o;
+        return key == keyValue.key &&
+                Objects.equals(value, keyValue.value);
     }
 
     @Override
