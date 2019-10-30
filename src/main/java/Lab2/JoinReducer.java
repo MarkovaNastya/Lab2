@@ -9,7 +9,16 @@ import java.util.Iterator;
 
 public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
-    public static final String SPACE = " ";
+    private static final String SPACE = " ";
+    private static final int AIRPORT_NAME_LENGTH=75;
+    private static final int DELAY_LENGTH=15;
+
+    private String formatString(int len, String s){
+        for (int i=s.length(); i<len;i++){
+            s+=SPACE;
+        }
+        return s;
+    }
 
     @Override
     protected void reduce(KeyValue key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -44,11 +53,7 @@ public class JoinReducer extends Reducer<KeyValue, Text, Text, Text> {
 
             average /= count;
 
-            for (int i=airportName.length(); i<75;i++){
-                airportName+=SPACE;
-            }
-
-            Text outText = new Text(airportName + ";   Average delay time: " + average + ";   Maximum delay time: "+ max+";   Minimum delay time: "+min);
+            Text outText = new Text(formatString(AIRPORT_NAME_LENGTH, airportName) + "Average delay time: " + formatString(DELAY_LENGTH, String.valueOf(average)) + "Maximum delay time: "+ formatString(DELAY_LENGTH, String.valueOf(max))+"Minimum delay time: "+formatString(DELAY_LENGTH, String.valueOf(min)));
 
             Text outKey = new Text (String.valueOf(key.getKey()));
 
